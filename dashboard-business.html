@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Character encoding -->
+    <meta charset="UTF-8">
+
+    <!-- Responsive design for different screen sizes -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Page title -->
+    <title>NordVPN - Business Dashboard</title>
+
+    <!-- Bootstrap framework for layout and UI components -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-light">
+    
+    <!-- NAVIGATION BAR -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom shadow-sm">
+            <div class="container-fluid px-4">
+                <a class="navbar-brand fw-bold tracking-wide" href="index.html">NORDVPN <span class="fw-light text-secondary">| Client</span></a>
+                <div class="d-flex align-items-center">
+                    
+                    <!-- Connection status -->
+                    <span class="text-light me-4">Status: <span class="badge bg-danger" id="connectionStatus">Disconnected</span></span>
+                    
+                    <!-- Logout button -->
+                    <a class="btn btn-sm btn-outline-light" href="index.html">Log Out</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN DASHBOARD -->
+    <div class="container-fluid">
+        <div class="row">
+            
+            <!-- SIDEBAR -->
+            <nav class="col-md-3 col-lg-2 d-md-block bg-white sidebar border-end" style="min-height: 90vh;">
+                <div class="position-sticky pt-4 px-3">
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mb-3 text-muted text-uppercase fw-bold">
+                        <span>My Network</span>
+                    </h6>
+                    <ul class="nav flex-column mb-4">
+                        <li class="nav-item mb-2"><a class="nav-link active fw-bold text-dark bg-light rounded" href="#">🌍 Global Map</a></li>
+                    </ul>
+
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mb-3 text-primary text-uppercase fw-bold mt-4">
+                        <span>Pro Features</span>
+                    </h6>
+                    <ul class="nav flex-column mb-4">
+                        <li class="nav-item"><a class="nav-link text-secondary" href="#">🔒 Dedicated IP Setup</a></li>
+                    </ul>
+
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mb-3 text-dark text-uppercase fw-bold mt-4">
+                        <span>Enterprise Admin</span>
+                    </h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a class="nav-link text-secondary" href="#">👥 Manage Team</a></li>
+                        <li class="nav-item"><a class="nav-link text-secondary" href="#">📊 Network Logs</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-5 py-4">
+
+                <!-- Header and connect button -->
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4 border-bottom">
+                    <h1 class="h2 fw-bold">Welcome, <span class="text-dark">Business Class</span> User</h1>
+                    
+                    <!-- Connect button -->
+                    <button class="btn btn-success fw-bold px-4" id="connectBtn">Connect VPN</button>
+                </div>
+
+                <div class="card shadow-sm border-0 mb-4">
+                    <div class="card-header bg-white fw-bold py-3">Global Server Network</div>
+                    <div class="card-body bg-light p-0 position-relative" id="mapContainer" style="height: 450px; overflow: hidden; background-color: #1a1a1a;">
+                        
+                        <img src="images/InteractiveMap.jpg" alt="Interactive World Map" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: 1;">
+
+                        <div class="map-node" data-location="New York, USA" data-ip="104.18.32.12" style="top: 35%; left: 25%;"></div>
+                        <div class="map-node" data-location="London, UK" data-ip="82.163.43.90" style="top: 30%; left: 48%;"></div>
+                        <div class="map-node" data-location="Tokyo, Japan" data-ip="133.24.90.11" style="top: 40%; left: 85%;"></div>
+                        <div class="map-node" data-location="Sydney, Australia" data-ip="203.0.113.45" style="top: 75%; left: 88%;"></div>
+                        <div class="map-node" data-location="Frankfurt, Germany" data-ip="18.192.45.1" style="top: 32%; left: 52%;"></div>
+
+                        <div class="position-absolute bottom-0 start-0 w-100 p-3 bg-dark text-white bg-opacity-75" style="z-index: 10;">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="mb-0 fw-bold" id="mapStatusText">Not Connected</h6>
+                                    <small id="mapIpText" class="text-light opacity-75">Select a node on the map to route traffic.</small>
+                                </div>
+                                <button class="btn btn-sm btn-danger fw-bold d-none" id="mapDisconnectBtn">Disconnect</button>
+                            </div>
+                        </div>
+
+                        <style>
+                            .map-node { position: absolute; width: 20px; height: 20px; background-color: #0d6efd; border: 3px solid #fff; border-radius: 50%; cursor: pointer; z-index: 5; transition: all 0.3s ease; box-shadow: 0 0 10px rgba(13, 110, 253, 0.5); opacity: 1; }
+                            .map-node:hover { transform: scale(1.3); }
+                            .map-connected .map-node { opacity: 0.4; background-color: #adb5bd; box-shadow: none; border-color: rgba(255, 255, 255, 0.5); }
+                            .map-connected .map-node.active { opacity: 1; background-color: #dc3545; border-color: #fff; box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7); animation: pulse-red 1.5s infinite cubic-bezier(0.66, 0, 0, 1); }
+                            @keyframes pulse-red { to { box-shadow: 0 0 0 20px rgba(220, 53, 69, 0); } }
+                        </style>
+                    </div>
+                </div>
+
+                <div class="card shadow-sm border-primary mb-4">
+                    <div class="card-header bg-primary text-white fw-bold py-3">Dedicated IP Configuration</div>
+                    <div class="card-body p-4">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <h5 class="fw-bold">Your Static Routing Node is Active</h5>
+                                <p class="text-muted">Your traffic is currently bypassing standard shared servers. You are utilizing a static IP address for secure whitelist access.</p>
+                                <code class="fs-4 text-dark bg-light p-2 rounded border">IP: 192.168.1.204</code>
+                            </div>
+                            <div class="col-md-4 text-end mt-3 mt-md-0">
+                                <button class="btn btn-outline-primary">Rotate IP Address</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card shadow-sm border-dark mb-4">
+                    <div class="card-header bg-dark text-white fw-bold py-3">Team Administration Console</div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead class="table-light"><tr><th class="px-4 py-3">Team Member</th><th class="py-3">Email</th><th class="py-3">Status</th><th class="px-4 py-3 text-end">Action</th></tr></thead>
+                                <tbody>
+                                    <tr><td class="px-4 py-3 fw-bold">Sarah Jenkins</td><td class="py-3 text-muted">sarah.j@business.com</td><td class="py-3"><span class="badge bg-success">Connected</span></td><td class="px-4 py-3 text-end"><button class="btn btn-sm btn-outline-danger">Revoke Access</button></td></tr>
+                                    <tr><td class="px-4 py-3 fw-bold">Mike Chen</td><td class="py-3 text-muted">m.chen@business.com</td><td class="py-3"><span class="badge bg-secondary">Offline</span></td><td class="px-4 py-3 text-end"><button class="btn btn-sm btn-outline-danger">Revoke Access</button></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const mapNodes = document.querySelectorAll('.map-node');
+            const mapContainer = document.getElementById('mapContainer');
+            const mapStatusText = document.getElementById('mapStatusText');
+            const mapIpText = document.getElementById('mapIpText');
+            const mapDisconnectBtn = document.getElementById('mapDisconnectBtn');
+            const globalStatusBadge = document.getElementById('connectionStatus');
+            const mainConnectBtn = document.getElementById('connectBtn');
+
+            function disconnectMap() {
+                mapNodes.forEach(n => n.classList.remove('active'));
+                if(mapContainer) mapContainer.classList.remove('map-connected');
+                mapStatusText.textContent = 'Not Connected';
+                mapIpText.textContent = 'Select a node on the map to route traffic.';
+                mapDisconnectBtn.classList.add('d-none');
+                globalStatusBadge.textContent = 'Disconnected';
+                globalStatusBadge.className = 'badge bg-danger';
+                mainConnectBtn.textContent = 'Connect VPN';
+                mainConnectBtn.className = 'btn btn-success fw-bold px-4';
+            }
+
+            mapNodes.forEach(node => {
+                node.addEventListener('click', function() {
+                    mapNodes.forEach(n => n.classList.remove('active'));
+                    this.classList.add('active');
+                    if(mapContainer) mapContainer.classList.add('map-connected');
+                    mapStatusText.textContent = `Connected to: ${this.getAttribute('data-location')}`;
+                    mapIpText.textContent = `Assigned IP: ${this.getAttribute('data-ip')}`;
+                    mapDisconnectBtn.classList.remove('d-none');
+                    globalStatusBadge.textContent = 'Protected';
+                    globalStatusBadge.className = 'badge bg-success';
+                    mainConnectBtn.textContent = 'Disconnect';
+                    mainConnectBtn.className = 'btn btn-danger fw-bold px-4';
+                });
+            });
+
+            mapDisconnectBtn.addEventListener('click', disconnectMap);
+            mainConnectBtn.addEventListener('click', function() {
+                if (globalStatusBadge.textContent === 'Disconnected') { if(mapNodes.length > 0) mapNodes[0].click(); } else { disconnectMap(); }
+            });
+        });
+    </script>
+</body>
+</html>

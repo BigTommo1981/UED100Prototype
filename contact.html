@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My NordVPN Prototype</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+                <div class="container">
+                    <a class="navbar-brand fw-bold" href="index.html">NORDVPN</a>
+
+                    <div class="navbar-nav ms-auto">
+                        <a class="nav-link" href="index.html">Home</a>
+                        <a class="nav-link fw-bold text-primary" href="contact.html">Support</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <main class="py-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        
+                        <!-- Support icon -->
+                        <div class="text-center mb-4">
+                            <img src="images/561127.png" alt="Support Icon" style="width: 60px;">
+                        </div>
+                        
+                        <!-- Page heading -->
+                        <h2 class="mb-4 text-center">Contact Support</h2>
+                        <p class="text-center mb-5">Our security professionals are available 24/7.</p>
+
+                        
+                           <!--SUPPORT FORM-->
+                        <form id="support-Form" class="needs-validation" novalidate>
+                            
+                            <!-- Name input field -->
+                            <div class="mb-3">
+                                <label for="name-Input" class="form-label">Full Name</label>
+                                <input type="text" id="name-Input" class="form-control" placeholder="John Doe" required>
+                                <div class="invalid-feedback">Please enter your full name.</div>
+                            </div>
+
+                            <!-- Email input field -->
+                            <div class="mb-3">
+                                <label for="email-Input" class="form-label">Email Address</label>
+                                <input type="email" id="email-Input" class="form-control" placeholder="name@example.com" required>
+                                <div class="invalid-feedback">Please enter a valid email address.</div>
+                            </div>
+
+                            <!-- Category dropdown -->
+                            <div class="mb-3">
+                                <label for="category-Input" class="form-label">Issue Category</label>
+                                <select id="category-Input" class="form-select" required>
+                                    <option value="" selected disabled>Select an issue...</option>
+                                    <option value="connectivity">Connectivity Issue</option>
+                                    <option value="billing">Account Billing</option>
+                                    <option value="security">Technical Security Query</option>
+                                </select>
+                                <div class="invalid-feedback">Please select a category.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message-Input" class="form-label">Message</label>
+                                <textarea id="message-Input" class="form-control" rows="4" required minlength="10"></textarea>
+                                <div class="invalid-feedback">Please provide more details (minimum 10 characters).</div>
+                            </div>
+                            
+                            <!-- Status message area (success/error) -->
+                            <div id="form-status" aria-live="polite" class="mb-3 text-center fw-bold"></div>
+                            
+                            <!--Submit Button-->
+                            <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!--Form Validation-->
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const form = document.getElementById('support-Form');
+                const statusDiv = document.getElementById('form-status');
+
+                form.addEventListener('submit', function (event) {
+                    // Prevent the page from refreshing when the button is clicked
+                    event.preventDefault();
+                    
+                    // Check if the form meets all HTML requirements
+                    if (!form.checkValidity()) {
+                        event.stopPropagation();
+                        statusDiv.textContent = 'Please fill out all required fields.';
+                        statusDiv.className = 'mb-3 text-center fw-bold text-danger';
+                    } else {
+                        // If everything is valid
+                        statusDiv.textContent = 'Enquiry Submitted! A technician will contact you shortly.';
+                        statusDiv.className = 'mb-3 text-center fw-bold text-success';
+                        
+                        // Clear the form fields for the next use
+                        form.reset();
+                        form.classList.remove('was-validated');
+                        return; // Exit the function early so we don't apply the 'was-validated' class again
+                    }
+
+                    // Add Bootstrap's validation class to show the green/red outlines
+                    form.classList.add('was-validated');
+                });
+            });
+        </script>
+    </body>
+</html>

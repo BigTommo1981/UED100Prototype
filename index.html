@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--Character encoding and viewport setup-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--Page Title-->
+    <title>NordVPN - Secure Your Digital Life</title>
+    
+    <!--Bostrap CSS framework-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!--Link to style.css-->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-light">
+    <header>
+        <!--Navigation bar uses Bootstrap-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+            <div class="container">
+
+                <!--NOrdVPN Logo-->
+                <a class="navbar-brand fw-bold" href="index.html">NORDVPN</a>
+
+                <!--Navigation links align right-->
+                <div class="navbar-nav ms-auto align-items-center">
+                    <a class="nav-link me-3" href="contact.html">Support</a>
+                    
+                    <!--Login Popup-->
+                    <button class="btn btn-outline-dark me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!--Hero Section-->
+        <div class="py-5 text-center bg-white border-bottom">
+            <div class="container mt-4 mb-4">
+                <h1 class="display-4 fw-bold mb-3">Secure Your Digital Life</h1>
+                <p class="lead text-muted mb-5 mx-auto" style="max-width: 600px;">
+                    Experience ultimate online privacy and security. Access the internet without borders, protect your data on public Wi-Fi, and browse anonymously.
+                </p>
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="pricing.html" class="btn btn-primary btn-lg px-4 fw-bold">View Plans</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container py-5 mx-auto" style="max-width: 900px;">
+            <h2 class="text-center mb-5 fw-bold">Why Choose NordVPN?</h2>
+            
+            <div class="card mb-5 shadow-sm border-0 bg-white">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-7 p-4 p-md-5">
+                        <h3 class="mb-4 fw-bold">Standard Tier</h3>
+                        <ul class="list-unstyled text-muted mb-4 fs-5">
+                            <li class="mb-2">✓ Access servers in 50+ countries</li>
+                            <li class="mb-2">✓ High-speed connection</li>
+                            <li class="mb-2">✓ AES-256 encryption</li>
+                            <li>✓ No-logs policy</li>
+                        </ul>
+                        <a href="pricing.html" class="btn btn-outline-primary fw-bold">Learn More</a>
+                    </div>
+                    <div class="col-md-5 text-center p-3 p-md-0">
+                        <img src="images/digital globe network.png" alt="digital globe network" class="img-fluid rounded-end" style="max-height: 250px; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-5 shadow-sm border-0 bg-white">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-7 p-4 p-md-5">
+                        <h3 class="mb-4 fw-bold">Pro Tier</h3>
+                        <ul class="list-unstyled text-muted mb-4 fs-5">
+                            <li class="mb-2">✓ Everything in the Standard plan</li>
+                            <li class="mb-2">✓ Static, dedicated IP address</li>
+                            <li class="mb-2">✓ Bypass repetitive CAPTCHAs</li>
+                            <li>✓ Secure access to business networks</li>
+                        </ul>
+                        <a href="pricing.html" class="btn btn-outline-primary fw-bold">Discover Pro</a>
+                    </div>
+                    <div class="col-md-5 text-center p-3 p-md-0">
+                        <img src="images/server.png" alt="Dedicated Server" class="img-fluid rounded-end" style="max-height: 250px; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-5 shadow-sm border-0 bg-white">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-7 p-4 p-md-5">
+                        <h3 class="mb-4 fw-bold">Business Tier</h3>
+                        <ul class="list-unstyled text-muted mb-4 fs-5">
+                            <li class="mb-2">✓ Centralized team admin panel</li>
+                            <li class="mb-2">✓ Site-to-site VPN capabilities</li>
+                            <li class="mb-2">✓ 24/7 priority support</li>
+                            <li>✓ Custom gateway deployments</li>
+                        </ul>
+                        <a href="pricing.html" class="btn btn-outline-primary fw-bold">Explore Business Plans</a>
+                    </div>
+                    <div class="col-md-5 text-center p-3 p-md-0">
+                        <img src="images/admin.png" alt="Admin Dashboard" class="img-fluid rounded-end" style="max-height: 250px; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Test credentials-->
+        <div class="container pb-5">
+            <div class="alert alert-secondary text-start mx-auto shadow-sm" style="max-width: 800px;" role="alert">
+                <h5 class="alert-heading fw-bold">Prototype Testing Credentials</h5>
+                <p class="mb-2">Use the following accounts in the Login Popup to test routing functionality:</p>
+                <hr>
+                <div class="row text-center mt-3">
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <strong class="d-block text-dark">Basic Tier</strong>
+                        <code class="fs-6 bg-transparent text-primary p-0">basic@test.com</code><br>
+                        <span class="text-muted small">Password: (Any)</span>
+                    </div>
+                    
+                    <div class="col-md-4 border-start border-end mb-3 mb-md-0">
+                        <strong class="d-block text-dark">Pro Tier</strong>
+                        <code class="fs-6 bg-transparent text-primary p-0">pro@test.com</code><br>
+                        <span class="text-muted small">Password: (Any)</span>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <strong class="d-block text-dark">Business Tier</strong>
+                        <code class="fs-6 bg-transparent text-primary p-0">business@test.com</code><br>
+                        <span class="text-muted small">Password: (Any)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!--Login Popup (modal)-->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!--Close button (X)-->
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold" id="loginModalLabel">Log In to NordVPN</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body pt-4">
+
+                    <!--Login Form-->
+                    <form id="loginForm">
+                        <!--Email/Username Input-->
+                        <div class="mb-3">
+                            <label for="loginEmail" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="loginEmail" placeholder="basic@test.com" required>
+                        </div>
+
+                        <!--Password Input-->
+                        <div class="mb-4">
+                            <label for="loginPassword" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="loginPassword" required>
+                        </div>
+                        
+                        <!--This is a simulated login, set creds are at the bottom of the form-->
+                        <div id="loginError" class="text-danger mb-3 d-none">Invalid email or password. Please use a testing email.</div>
+                        
+                        <!--Submit button-->
+                        <button type="submit" class="btn btn-primary w-100 fw-bold">Log In</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Bootstrap JS bundle-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- This script handles logins and validation -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const loginForm = document.getElementById('loginForm');
+            const loginError = document.getElementById('loginError');
+
+            loginForm.addEventListener('submit', function(event) {
+                
+                //Intercept submission, prevent default action (Page reload)
+                event.preventDefault();
+                const emailInput = document.getElementById('loginEmail').value.toLowerCase();
+                
+                //
+                loginError.classList.add('d-none');
+
+                // Route directly to the separate HTML files based on test accounts
+                if (emailInput === 'basic@test.com') {
+                    window.location.href = 'dashboard-basic.html';
+                } 
+                else if (emailInput === 'pro@test.com') {
+                    window.location.href = 'dashboard-pro.html';
+                } 
+                else if (emailInput === 'business@test.com') {
+                    window.location.href = 'dashboard-business.html';
+                } 
+                else {
+                    //Show error message if credentials do not match test accounts
+                    loginError.classList.remove('d-none');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
