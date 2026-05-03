@@ -46,10 +46,11 @@ body {
 .map-container {
     position: relative;
     width: 100%;
-    max-width: 600px;
-    height: 400px;
+    max-width: 100%;
+    height: 70vh; /* changed this to vh to make the height a percentage of the viewport height */ 
+    min-height: 500px; /* Added minimum height so image isn't too squashed for smaller screens */
     background-image: url('images/InteractiveMap.jpg');
-    background-size: cover;
+    background-size: contain; /* changed this to contain to eliminate the letterboxing */
     background-repeat: no-repeat;
     background-position: center;
     border-radius: 10px;
@@ -210,4 +211,21 @@ body {
 
 .pricing-card.pro-tier .btn:hover {
     box-shadow: 0 0 15px var(--status-connected);
+}
+
+@media (max-width: 768px) {
+    .map-container {
+        height: 50vh;      /* Makes the container shorter for phone screens */
+        min-height: 300px; /* Reduces the minimum height constraint */
+        background-size: contain; 
+        background-position: center;
+    }
+    
+    .display-4 {
+        font-size: 1.8rem; /* Keeps the heading from being too large on small screens */
+    }
+
+    .hero-section {
+        padding: 60px 0;   /* Reduces padding so users see the map sooner */
+    }
 }
