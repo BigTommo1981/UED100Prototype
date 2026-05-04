@@ -68,7 +68,8 @@
                 </div>
 
                 <!-- Changed mx-4 to mx-md-4 mx-0 to allow the map to go edge-to-edge on mobile -->
-                <div class="card shadow-sm border-0 mb-4 mx-md-4 mx-0">
+                <!-- Added style="max-width: 1200px;" to prevent the map from blowing out on 34-inch ultrawides -->
+                <div class="card shadow-sm border-0 mb-4 mx-md-4 mx-0" style="max-width: 1200px;">
                     <div class="card-header bg-white fw-bold py-3">Global Server Network</div>
                     <!-- Removed overflow:hidden and height:auto; background matches image aspect ratio -->
                     <div class="card-body bg-light p-0 position-relative" id="mapContainer" style="width: 100%; height: auto; background-color: #1a1a1a;">
