@@ -3,19 +3,19 @@
 <head>
     <!-- Character encoding -->
     <meta charset="UTF-8">
-    
+
     <!-- Responsive design for different screen sizes -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Page title -->
-    <title>NordVPN - Pro Dashboard</title>
+    <title>NordVPN - Business Dashboard</title>
 
     <!-- Bootstrap framework for layout and UI components -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-light">
-
+    
     <!-- NAVIGATION BAR -->
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom shadow-sm">
@@ -34,11 +34,14 @@
     </header>
 
     <!-- MAIN DASHBOARD -->
-    <div class="container-fluid">
-        <div class="row">
-
+    <!-- Changed to container-fluid with px-0 to allow full-width scaling on large monitors -->
+    <div class="container-fluid px-0">
+        <!-- Added g-0 to remove column gutters that cause letterboxing -->
+        <div class="row g-0">
+            
             <!-- SIDEBAR -->
-            <nav class="col-md-3 col-lg-2 d-md-block bg-white sidebar border-end" style="min-height: 90vh;">
+            <!-- Note: d-none d-md-block added to hide the vertical whitespace gap on mobile devices -->
+            <nav class="col-md-3 col-lg-2 d-none d-md-block bg-white sidebar border-end" style="min-height: 90vh;">
                 <div class="position-sticky pt-4 px-3">
                     <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mb-3 text-muted text-uppercase fw-bold">
                         <span>My Network</span>
@@ -53,24 +56,40 @@
                     <ul class="nav flex-column mb-4">
                         <li class="nav-item"><a class="nav-link text-secondary" href="#">🔒 Dedicated IP Setup</a></li>
                     </ul>
+
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mb-3 text-dark text-uppercase fw-bold mt-4">
+                        <span>Enterprise Admin</span>
+                    </h6>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a class="nav-link text-secondary" href="#">👥 Manage Team</a></li>
+                        <li class="nav-item"><a class="nav-link text-secondary" href="#">📊 Network Logs</a></li>
+                    </ul>
                 </div>
             </nav>
 
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-5 py-4">
+            <!-- Removed px-md-5 to let the map card hit the edges on large screens -->
+            <!-- Changed py-4 to py-md-4 py-2 to reduce the top gap on mobile -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 py-md-4 py-2">
 
                 <!-- Header and connect button -->
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4 border-bottom">
-                    <h1 class="h2 fw-bold">Welcome, <span class="text-primary">Pro</span> User</h1>
-
+                <!-- Reduced mb-4 to mb-md-4 mb-2 for tighter spacing on mobile -->
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-md-4 mb-2 border-bottom px-4">
+                    <h1 class="h2 fw-bold">Welcome, <span class="text-dark">Business Class</span> User</h1>
+                    
                     <!-- Connect button -->
                     <button class="btn btn-success fw-bold px-4" id="connectBtn">Connect VPN</button>
                 </div>
 
-                <div class="card shadow-sm border-0 mb-4">
+                <!-- Changed mx-4 to mx-md-4 mx-0 to allow the map to go edge-to-edge on mobile -->
+                <!-- Added style="max-width: 1200px;" to prevent the map from blowing out on 34-inch ultrawides -->
+                <div class="card shadow-sm border-0 mb-4 mx-md-4 mx-0" style="max-width: 1200px;">
                     <div class="card-header bg-white fw-bold py-3">Global Server Network</div>
-                    <div class="card-body bg-light p-0 position-relative" id="mapContainer" style="height: 450px; overflow: hidden; background-color: #1a1a1a;">
+                    <!-- Removed overflow:hidden and fixed height to allow the map to scale naturally -->
+                    <div class="card-body bg-light p-0 position-relative" id="mapContainer" style="width: 100%; height: auto; background-color: #1a1a1a;">
                         
-                        <img src="images/InteractiveMap.jpg" alt="Interactive World Map" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: 1;">
+                        <!-- Removed object-fit:cover and absolute positioning to prevent cropping -->
+                        <!-- Added !important overrides to bypass any conflicting styles in style.css -->
+                        <img src="images/InteractiveMap.jpg" alt="Interactive World Map" style="width: 100% !important; height: auto !important; max-height: none !important; display: block !important; z-index: 1;">
 
                         <div class="map-node" data-location="New York, USA" data-ip="104.18.32.12" style="top: 35%; left: 25%;"></div>
                         <div class="map-node" data-location="London, UK" data-ip="82.163.43.90" style="top: 30%; left: 48%;"></div>
@@ -89,8 +108,9 @@
                         </div>
 
                         <style>
-                            .map-node { position: absolute; width: 20px; height: 20px; background-color: #0d6efd; border: 3px solid #fff; border-radius: 50%; cursor: pointer; z-index: 5; transition: all 0.3s ease; box-shadow: 0 0 10px rgba(13, 110, 253, 0.5); opacity: 1; }
-                            .map-node:hover { transform: scale(1.3); }
+                            /* Added translate(-50%, -50%) to ensure node centers stay pinned during scaling */
+                            .map-node { position: absolute; width: 20px; height: 20px; background-color: #0d6efd; border: 3px solid #fff; border-radius: 50%; cursor: pointer; z-index: 5; transition: all 0.3s ease; box-shadow: 0 0 10px rgba(13, 110, 253, 0.5); opacity: 1; transform: translate(-50%, -50%); }
+                            .map-node:hover { transform: translate(-50%, -50%) scale(1.3); }
                             .map-connected .map-node { opacity: 0.4; background-color: #adb5bd; box-shadow: none; border-color: rgba(255, 255, 255, 0.5); }
                             .map-connected .map-node.active { opacity: 1; background-color: #dc3545; border-color: #fff; box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7); animation: pulse-red 1.5s infinite cubic-bezier(0.66, 0, 0, 1); }
                             @keyframes pulse-red { to { box-shadow: 0 0 0 20px rgba(220, 53, 69, 0); } }
@@ -98,7 +118,8 @@
                     </div>
                 </div>
 
-                <div class="card shadow-sm border-primary mb-4">
+                <!-- Business Specific: Dedicated IP (Added mx-md-4 mx-0 and max-width) -->
+                <div class="card shadow-sm border-primary mb-4 mx-md-4 mx-0" style="max-width: 1200px;">
                     <div class="card-header bg-primary text-white fw-bold py-3">Dedicated IP Configuration</div>
                     <div class="card-body p-4">
                         <div class="row align-items-center">
@@ -110,6 +131,22 @@
                             <div class="col-md-4 text-end mt-3 mt-md-0">
                                 <button class="btn btn-outline-primary">Rotate IP Address</button>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Business Specific: Team Console (Added mx-md-4 mx-0 and max-width) -->
+                <div class="card shadow-sm border-dark mb-4 mx-md-4 mx-0" style="max-width: 1200px;">
+                    <div class="card-header bg-dark text-white fw-bold py-3">Team Administration Console</div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead class="table-light"><tr><th class="px-4 py-3">Team Member</th><th class="py-3">Email</th><th class="py-3">Status</th><th class="px-4 py-3 text-end">Action</th></tr></thead>
+                                <tbody>
+                                    <tr><td class="px-4 py-3 fw-bold">Sarah Jenkins</td><td class="py-3 text-muted">sarah.j@business.com</td><td class="py-3"><span class="badge bg-success">Connected</span></td><td class="px-4 py-3 text-end"><button class="btn btn-sm btn-outline-danger">Revoke Access</button></td></tr>
+                                    <tr><td class="px-4 py-3 fw-bold">Mike Chen</td><td class="py-3 text-muted">m.chen@business.com</td><td class="py-3"><span class="badge bg-secondary">Offline</span></td><td class="px-4 py-3 text-end"><button class="btn btn-sm btn-outline-danger">Revoke Access</button></td></tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
